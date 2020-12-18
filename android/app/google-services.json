@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "338123683965",
+    "project_id": "ghummakad-dcbb7",
+    "storage_bucket": "ghummakad-dcbb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338123683965:android:8535800980003fe6321914",
+        "android_client_info": {
+          "package_name": "com.example.Ghummakad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338123683965-73l922tg8fo2am9rdt5e40q30s6vtvk2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLLTP-0XewWURLSEtN6aBGWcWyEoEC9Q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338123683965-73l922tg8fo2am9rdt5e40q30s6vtvk2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
