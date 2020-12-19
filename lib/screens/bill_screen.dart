@@ -49,61 +49,75 @@ class BillScreen extends StatelessWidget {
           Column(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(6.0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  width: MediaQuery.of(context).size.width * 0.9,
                   color: Theme.of(context).primaryColor,
                   child: Center(
                     child: Text(
                       " ${_bill.placeName}",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.14,
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(6.0),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.1,
-                        color: Theme.of(context).primaryColor,
-                        child: Center(
-                          child: Text(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: MediaQuery.of(context).size.width * 0.20,
+                      color: Theme.of(context).primaryColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.confirmation_num,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
                             "${_bill.numPer}",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(20),
+                    ),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: MediaQuery.of(context).size.width * 0.65,
+                      color: Theme.of(context).primaryColor,
+                      child: Center(
+                        child: Text(
+                          "$formattedDate",
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(6.0),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        color: Theme.of(context).primaryColor,
-                        child: Center(
-                          child: Text(
-                            "$formattedDate",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 40,
@@ -114,7 +128,7 @@ class BillScreen extends StatelessWidget {
       ),
       floatingActionButton: new FloatingActionButton.extended(
         elevation: 0.0,
-        label: Text('All Tickets'),
+        label: Text('Proceed To Pay'),
         icon: Icon(Icons.payment),
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {},
