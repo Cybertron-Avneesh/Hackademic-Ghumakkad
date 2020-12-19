@@ -23,6 +23,8 @@ class BillCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
         child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          clipBehavior: Clip.antiAlias,
           elevation: 6,
           shadowColor: Theme.of(context).primaryColor.withOpacity(0.5),
           child: ListTile(
