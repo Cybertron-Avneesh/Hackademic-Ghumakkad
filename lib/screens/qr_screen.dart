@@ -14,6 +14,42 @@ class QRScreen extends StatelessWidget {
   DocumentSnapshot _userData;
   DocumentSnapshot _placeData;
 
+  void _showNotDialog(num numPer, BuildContext ctx) {
+    showDialog(
+      context: ctx,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: Theme.of(ctx).primaryColor,
+        // title: Text(
+        //   'Entry Notification',
+        //   textAlign: TextAlign.center,
+        // ),
+        content: Text(
+          'Entry for $numPer',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 60,
+            fontWeight: FontWeight.w200,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          FlatButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: Text(
+              'Dismiss',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<void> _getUserPlace(placeId) async {
     // Get the Current User Document
     _user = FirebaseAuth.instance.currentUser;
@@ -48,6 +84,7 @@ class QRScreen extends StatelessWidget {
     });
 
     // Show a Popup for the Guard
+    _showNotDialog(numTic, ctx);
   }
 
   void _exit(String placeID, BuildContext ctx) async {
