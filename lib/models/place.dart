@@ -8,6 +8,7 @@ class Place {
   final String city;
   final int liveCnt;
   final String placeId;
+  final double fareHour;
   final String id;
   List<Review> reviews;
 
@@ -18,6 +19,7 @@ class Place {
     @required this.city,
     @required this.liveCnt,
     @required this.placeId,
+    @required this.fareHour,
     @required this.id,
     @required this.reviews,
   });
