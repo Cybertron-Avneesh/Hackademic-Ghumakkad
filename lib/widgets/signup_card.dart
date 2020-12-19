@@ -55,6 +55,10 @@ class _SignupCardState extends State<SignupCard> {
           .set({
         'email': _authData['email'],
         'name': _authData['name'],
+        'atAPlace': false,
+        'entryTime': '',
+        'numPer': 0,
+        'bills': [],
       });
       Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
     } on PlatformException catch (err) {
