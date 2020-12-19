@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../widgets/review_card.dart';
+import '../widgets/new_review.dart';
 import '../models/place.dart';
+import '../models/review.dart';
 
 class PlaceScreen extends StatefulWidget {
   static const routeName = '/place';
@@ -12,16 +15,56 @@ class PlaceScreen extends StatefulWidget {
 }
 
 class _PlaceScreenState extends State<PlaceScreen> {
-  Place _place = Place(
-      name: 'test',
-      desc: 'dummy',
-      img:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Taj_Mahal_Front.JPG/800px-Taj_Mahal_Front.JPG',
-      city: 'Agra India',
-      liveCnt: 21,
-      placeId: 'cdscksdsc',
-      id: 'scsdcs',
-      reviews: []);
+  Place _place;
+
+  void _addReview({
+    String desc,
+    double rating,
+  }) async {
+    // Get the Current User Document
+    final user = FirebaseAuth.instance.currentUser;
+    final userData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+    // Make a New Review for the DB
+    final reviewDB = {
+      'desc': desc,
+      'name': userData['name'],
+      'rating': rating,
+    };
+
+    // Make a New Review for the Local Variable
+    final reviewLocal = new Review(
+      desc: desc,
+      name: userData['name'],
+      rating: rating,
+    );
+
+    // Get the Selected Place
+    final selPlaceFuture =
+        FirebaseFirestore.instance.collection('places').doc(_place.id);
+    final selPlace = await selPlaceFuture.get();
+    final selReviews = selPlace['reviews'];
+
+    // Update the Reviews Array (in DB & in Locally)
+    final newReviewsArr = [...selReviews, reviewDB];
+    _place.reviews = [..._place.reviews, reviewLocal];
+    selPlaceFuture.update({
+      'reviews': newReviewsArr,
+    });
+    setState(() {});
+  }
+
+  void _startAddNewRev(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return NewReview(_addReview);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +170,11 @@ class _PlaceScreenState extends State<PlaceScreen> {
                   shrinkWrap: true,
                   itemCount: _place.reviews.length,
                   itemBuilder: (context, i) {
-                    return Text("Reviews go here...");
+                    return ReviewCard(
+                      message: _place.reviews[i].desc,
+                      author: _place.reviews[i].name,
+                      rating: _place.reviews[i].rating,
+                    );
                   },
                 ),
               )
@@ -136,11 +183,10 @@ class _PlaceScreenState extends State<PlaceScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // add new review functionality
-        },
+        onPressed: () => _startAddNewRev(context),
         child: Icon(Icons.rate_review),
       ),
     );
   }
 }
+
