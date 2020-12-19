@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ghummakad/screens/home_screen.dart';
 
 import '../screens/login_screen.dart';
 
@@ -55,7 +56,7 @@ class _SignupCardState extends State<SignupCard> {
         'email': _authData['email'],
         'name': _authData['name'],
       });
-      Navigator.of(context).pushReplacementNamed('/');
+      Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
     } on PlatformException catch (err) {
       var message = 'An Error Occured, Please check your Credentials';
 
