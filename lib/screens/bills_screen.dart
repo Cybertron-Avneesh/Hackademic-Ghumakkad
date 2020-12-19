@@ -49,7 +49,6 @@ class _BillsScreenState extends State<BillsScreen> {
             ));
           });
           return Container(
-            height: 400,
             child: ListView.builder(
               itemCount: _bills.length,
               itemBuilder: (ctx, i) {

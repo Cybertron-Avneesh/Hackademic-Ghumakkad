@@ -25,11 +25,12 @@ dependencies:
     sdk: flutter
   cloud_firestore: ^0.14.4
   cupertino_icons: ^1.0.0
-  firebase_core: ^0.5.3
   firebase_auth: ^0.18.4+1
-  qr_code_scanner: ^0.1.0
+  firebase_core: ^0.5.3
   flare_flutter: ^2.0.6
   font_awesome_flutter: ^8.10.1
+  intl: ^0.16.1
+  qr_code_scanner: ^0.1.0
 
 dev_dependencies:
   flutter_test:
