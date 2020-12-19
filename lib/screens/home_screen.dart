@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ghummakad/widgets/all_cities.dart';
+
+import './qr_screen.dart';
+import '../widgets/all_cities.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -25,6 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               // add logout functionality
               FirebaseAuth.instance.signOut();
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.qr_code),
+            onPressed: () {
+              Navigator.of(context).pushNamed(QRScreen.routeName);
             },
           ),
         ],
