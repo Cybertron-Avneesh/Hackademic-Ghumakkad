@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ghummakad/screens/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import './screens/home_screen.dart';
+import './screens/login_screen.dart';
 import './screens/signup_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -16,7 +21,13 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.teal,
         accentColor: Colors.tealAccent,
       ),
-      home: HomeScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, snap) {
+          if (snap.hasData) return HomeScreen();
+          return LoginScreen();
+        },
+      ),
       routes: {
         SignupScreen.routeName: (ctx) => SignupScreen(),
         LoginScreen.routeName: (ctx) => LoginScreen(),
