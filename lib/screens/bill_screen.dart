@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,115 +17,133 @@ class BillScreen extends StatelessWidget {
         elevation: 0.0,
         title: Text('Bill Screen'),
       ),
-      body: Column(
-        children: [
-          ClipPath(
-            clipper: CurvedBottomClipper(),
-            child: Container(
-                color: Theme.of(context).primaryColor,
-                height: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
-                    SizedBox(height: 20),
-                    Text(
-                      'Total Amount',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      '\$  ${_bill.price.toString()}',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 38,
-                      ),
-                    ),
-                  ],
-                )),
-          ),
-          SizedBox(height: 60),
-          Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: MediaQuery.of(context).size.width * 0.9,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ClipPath(
+              clipper: CurvedBottomClipper(),
+              child: Container(
                   color: Theme.of(context).primaryColor,
-                  child: Center(
-                    child: Text(
-                      " ${_bill.placeName}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontStyle: FontStyle.italic,
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Text(
+                        'Total Amount',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 20),
+                      Text(
+                        '\$  ${_bill.price.toString()}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 38,
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
+            SizedBox(height: 60),
+            Stack(
+              children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 1.8,
+                    child: FlareActor('assets/animated_money_wallet.flr',
+                        alignment: Alignment.bottomCenter,
+                        animation: 'coins_out'),
                   ),
                 ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                    ),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.20,
-                      color: Theme.of(context).primaryColor,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.confirmation_num,
-                            color: Colors.white,
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            "${_bill.numPer}",
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        color: Theme.of(context).primaryColor,
+                        child: Center(
+                          child: Text(
+                            " ${_bill.placeName}",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 30,
+                              fontStyle: FontStyle.italic,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(20),
-                    ),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.65,
-                      color: Theme.of(context).primaryColor,
-                      child: Center(
-                        child: Text(
-                          "$formattedDate",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
-            ],
-          ),
-        ],
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                          ),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.20,
+                            color: Theme.of(context).primaryColor,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.confirmation_num,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  "${_bill.numPer}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05),
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(20),
+                          ),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.65,
+                            color: Theme.of(context).primaryColor,
+                            child: Center(
+                              child: Text(
+                                "$formattedDate",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // SizedBox(
+                    //   height: 40,
+                    // ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       floatingActionButton: new FloatingActionButton.extended(
         elevation: 0.0,
