@@ -6,6 +6,7 @@ import 'package:ghummakad/screens/place_screen.dart';
 import './screens/home_screen.dart';
 import './screens/login_screen.dart';
 import './screens/signup_screen.dart';
+import './screens/qr_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         SignupScreen.routeName: (ctx) => SignupScreen(),
         LoginScreen.routeName: (ctx) => LoginScreen(),
         PlaceScreen.routeName: (ctx) => PlaceScreen(),
+        QRScreen.routeName: (ctx) => QRScreen(),
       },
     );
   }
