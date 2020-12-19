@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -77,30 +78,40 @@ class _QRViewExampleState extends State<QRViewExample> {
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: [
-                        SizedBox(height: 25),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.4,
-                          width: MediaQuery.of(context).size.width * 0.65,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                            width: 2,
-                            color: Theme.of(context).primaryColor,
-                          )),
-                          child: NotificationListener<
-                              SizeChangedLayoutNotification>(
-                            onNotification: (notification) {
-                              Future.microtask(
-                                  () => controller?.updateDimensions(qrKey));
-                              return false;
-                            },
-                            child: SizeChangedLayoutNotifier(
-                              key: const Key('qr-size-notifier'),
-                              child: QRView(
-                                key: qrKey,
-                                onQRViewCreated: _onQRViewCreated,
+                        SizedBox(height: 50),
+                        Stack(
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.width * 0.75,
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                width: 2,
+                                color: Theme.of(context).primaryColor,
+                              )),
+                              child: NotificationListener<
+                                  SizeChangedLayoutNotification>(
+                                onNotification: (notification) {
+                                  Future.microtask(() =>
+                                      controller?.updateDimensions(qrKey));
+                                  return false;
+                                },
+                                child: SizeChangedLayoutNotifier(
+                                  key: const Key('qr-size-notifier'),
+                                  child: QRView(
+                                    key: qrKey,
+                                    onQRViewCreated: _onQRViewCreated,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Container(
+                                height:
+                                    MediaQuery.of(context).size.width * 0.75,
+                                width: MediaQuery.of(context).size.width * 0.75,
+                                child: FlareActor('assets/qr_scanner.flr',
+                                    animation: 'scan'))
+                          ],
                         ),
                         SizedBox(height: 30),
                         Text(

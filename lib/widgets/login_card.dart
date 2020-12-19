@@ -70,119 +70,125 @@ class _LoginCardState extends State<LoginCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Stack(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.15,
-            width: MediaQuery.of(context).size.width,
-            color: Theme.of(context).primaryColor,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: MediaQuery.of(context).size.height * 0.07,
-            ),
-            // height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    child: CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.account_circle,
-                        color: Colors.black,
-                        size: 120,
+    return Stack(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height*0.15,
+          width: MediaQuery.of(context).size.width,
+          color: Theme.of(context).primaryColor,
+
+
+        ),
+         Container(
+           
+      
+        padding: EdgeInsets.only(
+          left:MediaQuery.of(context).size.height*0.04 ,
+          right: MediaQuery.of(context).size.height*0.04,
+          
+        ),
+        // height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height:MediaQuery.of(context).size.height*0.05  ,),
+             
+                Align(
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundColor:Colors.white,
+                                    child: Icon(
+                      Icons.account_circle,
+                      color: Colors.black,
+                      size: 120,
+                    ),
+                  ),
+                  alignment: Alignment.topCenter,
+                ),
+                SizedBox(height: 20),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        cursorColor: Theme.of(context).primaryColor,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.email),
+                          labelText: 'Email Address',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty || !value.contains('@')) {
+                            return 'Please Enter a Valid Email Address';
+                          }
+                          return null;
+                        },
+                        onFieldSubmitted: (_) {
+                          FocusScope.of(context).requestFocus(_passwordFN);
+                        },
+                        onSaved: (value) {
+                          _authData['email'] = value;
+                        },
                       ),
-                    ),
-                    alignment: Alignment.topCenter,
-                  ),
-                  SizedBox(height: 20),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          cursorColor: Theme.of(context).primaryColor,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email),
-                            labelText: 'Email Address',
-                            border: OutlineInputBorder(),
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty || !value.contains('@')) {
-                              return 'Please Enter a Valid Email Address';
-                            }
-                            return null;
-                          },
-                          onFieldSubmitted: (_) {
-                            FocusScope.of(context).requestFocus(_passwordFN);
-                          },
-                          onSaved: (value) {
-                            _authData['email'] = value;
-                          },
+                      SizedBox(height: 10),
+                      TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        cursorColor: Theme.of(context).primaryColor,
+                        focusNode: _passwordFN,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.security),
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
                         ),
-                        SizedBox(height: 10),
-                        TextFormField(
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
-                          cursorColor: Theme.of(context).primaryColor,
-                          focusNode: _passwordFN,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.security),
-                            labelText: 'Password',
-                            border: OutlineInputBorder(),
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty || value.length < 6) {
-                              return 'Password is too short!';
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            _authData['password'] = value;
-                          },
-                        ),
-                        SizedBox(height: 20),
-                        _isLoading
-                            ? CircularProgressIndicator()
-                            : FloatingActionButton.extended(
-                                onPressed: _saveForm,
-                                label: Text(
-                                  'Log In',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                icon: Icon(Icons.login, color: Colors.black),
-                                heroTag: null,
-                                elevation: 2,
-                                backgroundColor: Theme.of(context).primaryColor,
+                        validator: (value) {
+                          if (value.isEmpty || value.length < 6) {
+                            return 'Password is too short!';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _authData['password'] = value;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      _isLoading
+                          ? CircularProgressIndicator()
+                          : FloatingActionButton.extended(
+                              onPressed: _saveForm,
+                              label: Text(
+                                'Log In',
+                                style: TextStyle(color: Colors.black),
                               ),
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacementNamed(SignupScreen.routeName);
-                          },
-                          child: Text(
-                            'Create An Account',
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
+                              icon: Icon(Icons.login, color: Colors.black),
+                              heroTag: null,
+                              elevation: 2,
+                              backgroundColor: Theme.of(context).primaryColor,
                             ),
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(SignupScreen.routeName);
+                        },
+                        child: Text(
+                          'Create An Account',
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      
+      ],
+          
     );
   }
 }
