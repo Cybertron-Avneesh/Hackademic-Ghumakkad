@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import './qr_screen.dart';
+import './bills_screen.dart';
 import '../widgets/all_cities.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -69,9 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Text('Start Exploring'),
-        icon: Icon(Icons.explore),
+        onPressed: () {
+          Navigator.of(context).pushNamed(BillsScreen.routeName);
+        },
+        label: Text('All Tickets'),
+        icon: Icon(Icons.payment),
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );
