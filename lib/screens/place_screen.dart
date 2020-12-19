@@ -145,7 +145,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
                         _place.desc,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -158,7 +158,8 @@ class _PlaceScreenState extends State<PlaceScreen> {
                   child: Text(
                     "Reviews",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   alignment: Alignment.centerLeft,
@@ -189,4 +190,3 @@ class _PlaceScreenState extends State<PlaceScreen> {
     );
   }
 }
-

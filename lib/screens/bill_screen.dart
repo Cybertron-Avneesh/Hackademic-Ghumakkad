@@ -15,7 +15,7 @@ class BillScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        title: Text('Bill Screen'),
+        title: Text('Your Bill'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -34,6 +34,7 @@ class BillScreen extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(height: 20),
@@ -41,7 +42,8 @@ class BillScreen extends StatelessWidget {
                         '\$  ${_bill.price.toString()}',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 38,
+                          fontSize: 42,
+                          fontWeight: FontWeight.w200,
                         ),
                       ),
                     ],
@@ -78,6 +80,7 @@ class BillScreen extends StatelessWidget {
                               color: Colors.white,
                               fontSize: 30,
                               fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w200,
                             ),
                           ),
                         ),
@@ -107,7 +110,7 @@ class BillScreen extends StatelessWidget {
                                   "${_bill.numPer}",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
@@ -147,8 +150,11 @@ class BillScreen extends StatelessWidget {
       ),
       floatingActionButton: new FloatingActionButton.extended(
         elevation: 0.0,
-        label: Text('Proceed To Pay'),
-        icon: Icon(Icons.payment),
+        label: Text(
+          'Proceed To Pay',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: Icon(Icons.payment, color: Colors.white),
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {},
       ),

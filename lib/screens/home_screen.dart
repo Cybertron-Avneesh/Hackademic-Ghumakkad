@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Screen"),
+        title: Text('Ghumakkad'),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
@@ -73,8 +73,16 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           Navigator.of(context).pushNamed(BillsScreen.routeName);
         },
-        label: Text('All Tickets'),
-        icon: Icon(Icons.payment),
+        label: Text(
+          'All Tickets',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        icon: Icon(
+          Icons.payment,
+          color: Colors.white,
+        ),
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );

@@ -11,7 +11,11 @@ class DropDown extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: DropdownButton(
-        hint: Text('Your City'),
+        hint: Text(
+          'Your City',
+          style: TextStyle(color: Colors.white),
+        ),
+        iconEnabledColor: Colors.white,
         items: cities
             .map(
               (item) => new DropdownMenuItem(

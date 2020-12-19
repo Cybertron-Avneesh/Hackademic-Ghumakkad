@@ -28,7 +28,7 @@ class _BillsScreenState extends State<BillsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bills'),
+        title: Text('Tickets'),
       ),
       body: FutureBuilder(
         future: _userFuture,
