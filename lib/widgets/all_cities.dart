@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../widgets/dropdown.dart';
@@ -68,8 +69,18 @@ class _AllCitiesState extends State<AllCities> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         DropDown(_setCity, widget.cities),
-        _isLoading
-            ? Center(child: CircularProgressIndicator())
+        _selectedCityId.isEmpty
+            ? Expanded(
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                  child: FlareActor(
+                    "assets/map_path_trans.flr",
+                    animation: 'Show',
+                  ),
+                ),
+              )
             : Expanded(
                 child: ListView.builder(
                   itemCount: _selectedPlaces.length,
