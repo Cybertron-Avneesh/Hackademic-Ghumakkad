@@ -10,7 +10,8 @@ import './screens/bills_screen.dart';
 import './screens/bill_screen.dart';
 import './screens/qr_screen.dart';
 
-import 'package:flutter/services.dart' ;
+import 'package:flutter/services.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -21,14 +22,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-      ]);
- 
+      DeviceOrientation.portraitUp,
+    ]);
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Ghumakkad',
       theme: ThemeData(
         primaryColor: Colors.teal,
         accentColor: Colors.tealAccent,
+        fontFamily: 'Nunito',
       ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
