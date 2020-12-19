@@ -34,6 +34,7 @@ class _AllCitiesState extends State<AllCities> {
           city: el['city'],
           liveCnt: el['liveCnt'],
           placeId: el['placeId'],
+          fareHour: el['fareHour'],
           reviews: [],
           id: el.id,
         );
