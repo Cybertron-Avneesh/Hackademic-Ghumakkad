@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ghummakad/screens/home_screen.dart';
 
+import '../screens/signup_screen.dart';
 import '../screens/login_screen.dart';
 
 class SignupCard extends StatefulWidget {
@@ -60,7 +60,7 @@ class _SignupCardState extends State<SignupCard> {
         'numPer': 0,
         'bills': [],
       });
-      Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+      Navigator.of(context).pushReplacementNamed('/');
     } on PlatformException catch (err) {
       var message = 'An Error Occured, Please check your Credentials';
 
@@ -101,15 +101,16 @@ class _SignupCardState extends State<SignupCard> {
           color: Theme.of(context).primaryColor,
         ),
         Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20,
+          padding: EdgeInsets.only(
+              left:MediaQuery.of(context).size.height*0.04 ,
+          right: MediaQuery.of(context).size.height*0.04,
+          
           ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
+                SizedBox(height:MediaQuery.of(context).size.height*0.05  ,),
                 Align(
                   child: CircleAvatar(
                     radius: 60,
