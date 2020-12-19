@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-// import '../widgets/dropdown.dart';
-// import '../widgets/place_card.dart';
+import '../widgets/dropdown.dart';
+import '../widgets/place_card.dart';
 import '../models/place.dart';
 import '../models/review.dart';
 
@@ -67,7 +67,15 @@ class _AllCitiesState extends State<AllCities> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        
+        DropDown(_setCity, widget.cities),
+        _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Expanded(
+                child: ListView.builder(
+                  itemCount: _selectedPlaces.length,
+                  itemBuilder: (ctx, i) => PlaceCard(_selectedPlaces[i]),
+                ),
+              ),
       ],
     );
   }
