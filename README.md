@@ -1,4 +1,4 @@
-# Ghummakad
+# Ghumakkad
 
 ## Project for Hackademic 
 
