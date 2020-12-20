@@ -16,7 +16,7 @@
 - Add Bluetooth billing method to start/stop billing whenever the user enters the proximity range in order to automate whole process
 - List services available at tourist places (ex: restaurant) and provide special offer to those who use the app.
 - Add payment gateway.
-- Make the whole process more secure by adding functionality of Blacklisting user if he/she fail to successful pay the fee.
+- Make the whole process more secure by adding functionality of Blacklisting user if he/she fails to successfully pay the fee.
 
 
 [ Check out the video demonstration for our project :) ](https://youtu.be/ZjTLvHjShh0)
