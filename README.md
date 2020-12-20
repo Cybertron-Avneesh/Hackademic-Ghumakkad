@@ -1,6 +1,6 @@
 # Ghummakad
 
-## Project for Hackademic -HINT
+## Project for Hackademic 
 
 
 ### App Features
